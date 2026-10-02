@@ -1,13 +1,39 @@
 @import "tailwindcss";
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
 }
 
 .animate-fadeIn {
@@ -15,81 +41,104 @@
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a2e;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #4a4a6a;
-  border-radius: 3px;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #6a6a8a;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* Range input styling */
+/* Range input */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
+  cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
-  background: #374151;
+  background: linear-gradient(to right, #374151, #4b5563);
   border-radius: 3px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #f97316;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
   border-radius: 50%;
   cursor: pointer;
-  margin-top: -5px;
-  box-shadow: 0 0 8px #f9731688;
+  margin-top: -4px;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
 }
 
 input[type="range"]::-moz-range-track {
   width: 100%;
   height: 6px;
-  background: #374151;
+  background: linear-gradient(to right, #374151, #4b5563);
   border-radius: 3px;
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: #f97316;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
   border-radius: 50%;
   cursor: pointer;
   border: none;
-  box-shadow: 0 0 8px #f9731688;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
 }
 
-/* Body styling */
+/* Body */
 body {
-  background: #030712;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Responsive scaling for the solar system */
-@media (max-width: 1024px) {
-  .solar-system-container {
-    transform: scale(0.4) !important;
-  }
+html, body, #root {
+  width: 100%;
+  height: 100%;
 }
 
-@media (max-width: 640px) {
-  .solar-system-container {
-    transform: scale(0.3) !important;
-  }
+/* Prevent text selection during drag */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide scrollbar for mobile planet list */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
